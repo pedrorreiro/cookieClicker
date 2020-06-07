@@ -1,0 +1,108 @@
+body{
+    background: #ccc;
+}
+
+#principal{
+
+    width: 100%;
+    background-color: #ccc;
+    border-radius: 7px;
+    height: 100%;
+}
+
+#meio{
+    
+    width: 90%;
+
+
+    border-radius: 7px;
+    
+    margin: 0 5%;
+}
+
+#logo{
+    height: 200px;
+    background: white;
+}
+
+#cookie{
+    height: 250px;
+    width: 270px;
+}
+
+#cookie:hover{
+    cursor: pointer;
+}
+
+#cookieBar{
+    background-color: white;
+    width: 90%;
+    text-align: center;
+    padding: 20px 0;
+    border-radius: 7px;
+    display: inline-block;
+    position: static;
+    margin: 0 5%;
+}
+
+#dadosCookie{
+    font-size: 2em;
+}
+
+.nomes{
+    font-size: 0.8em;
+}
+
+.itemLoja{
+    background: white;
+    border-radius: 7px;
+}
+
+.dadosItem{
+    text-align: center;
+    display: inline-block;
+    clear: both;
+}
+
+.itemLoja:hover{
+    cursor: pointer;
+   
+}
+
+.nomeItem{
+    font-weight: bold;
+}
+
+#titBloco{
+    text-align: center;
+    font-weight: bold;
+}
+
+#loja{
+    padding: 10px;
+    background: white;
+    border-radius: 7px;
+    margin-top: 15px;
+    text-align: center;
+}
+
+#inventario{
+    background: white;
+    border-radius: 7px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding: 10px;
+    text-align: center;
+
+   }
+
+.imgItem{
+    width: 80px;
+    height: 80px;
+    
+}
+
+#botoes{
+    text-align: center;
+}
+

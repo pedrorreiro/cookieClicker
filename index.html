@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <title>Cookie</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="folha.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    </head>
+
+    <body>
+        <div id="principal">
+            <div id="cookieBar">
+
+                <img id="cookie" src="img/cookie.png" onclick="cookClick()"></img><br>
+                <script src="js/jogo.js"></script>
+             
+                <div id="dadosCookie">
+                    <span class="nomes">Cookies: </span>
+                    <span id="qtdCookies">0</span><br>
+                    <span class="nomes">Por clique (cpc): </span><span id="cpc">1.0</span><br>
+                    <span class="nomes">Por segundo (cps): </span><span id="cps">0.0</span><br>
+                    
+                    <!--
+                    <button onclick="menosCps(1)">- CPS</button>
+                    <button onclick="maisCps(1)">+ CPS</button>
+
+                    -->
+                    
+                </div>
+
+            </div>
+
+            <div id="meio">
+
+                <div id="inventario">
+                    <p id="titBloco">Inventário</p>
+                    <span>Cursores: <span id="inv0">0</span></span><br><br>
+                    <span>Cozinheiras: <span id="inv1">0</span></span><br><br>
+                    <div id="botoes">
+                        <button id="save" onclick="atualizaInfo()">SALVAR</button>
+                        <button id="carregar" onclick="carregarInfo()">CARREGAR</button>
+                    </div>
+                </div>
+            
+                <div id=loja>
+
+                    <p id="titBloco">Loja</p>
+
+                    <div class="itemLoja" onclick="cobra(0)">
+                        <img src='img/cursor.png' class="imgItem">
+                        <div class="dadosItem">
+                            <p class="nomeItem">Cursor</p>
+                            <p class="descItem">Aumenta  produção de cookie por click.</p>
+                            <span>Preço: </span><span class="precoItem" id="0">0</span>
+                        </div>
+                    </div>
+
+                <hr>
+
+                    <div class="itemLoja" onclick="cobra(1)">
+                        <img src='img/cozinheira.png' class="imgItem">
+                        <div class="dadosItem">
+                            <p class="nomeItem">Cozinheira</p>
+                            <p class="descItem">Aumenta a produção em <br> cookie por segundo e cookie por click.</p>
+                            <span>Preço: </span><span class="precoItem" id="1">0</span>
+                        </div>
+                    </div>
+
+            </div>
+        </div>  
+    </body>
+</html>
