@@ -1,6 +1,14 @@
+window.onload(alert("aloo"));
+
 var cookies = 0;
 var cps = 0;
 var cpc = 1;
+
+var timer;
+
+if(cps != 0){
+    timer = setInterval(cook,1/cps * 1000);
+}
 
 // Dados Loja
 
@@ -45,10 +53,6 @@ function zeraItens() {
 
 // [id][0: id, 1: nome, 2: preço, 3: frequencia, 4: qtdCompradas]
 
-if(cps != 0){
-    var timer = setInterval(cook,1/cps * 1000);
-}
-
 // Setters
 
 function setCps(valor){
@@ -57,7 +61,7 @@ function setCps(valor){
 
     if(cps != 0){
         clearInterval(timer);
-        var timer = setInterval(cook,1/cps * 1000);
+        timer = setInterval(cook,1/cps * 1000);
     }
 
     if(cps == 0){
@@ -96,9 +100,10 @@ function getAuxCps(){
 
 // -----------------------------------------------
 
+/*
 function menosCps(qtd){
 
-    if(cps != 1 && cps != 0){ // Se chega em 0, da pau
+    if(cps != 1 && cps != 0){ //
 
         cps = cps - qtd;
         atualizaCps();
@@ -108,6 +113,7 @@ function menosCps(qtd){
         timer = setInterval(cook,1/cps * 1000);
     }
 }
+*/
 
 function maisCps(qtd){
 
