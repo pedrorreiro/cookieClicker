@@ -1,5 +1,3 @@
-window.onload('DASDSADA')
-
 var cookies = 0;
 var cps = 0;
 var cpc = 1;
@@ -43,11 +41,21 @@ itens = [[curs.id, curs.nome, curs.price, curs.freq, curs.qtdCompradas],
          [coz.id, coz.nome, coz.price, coz.freq, coz.qtdCompradas]
         ];
 
-function zeraItens() {
-    
-    itens = [[curs.id, curs.nome, curs.price, curs.freq, curs.qtdCompradas],
-         [coz.id, coz.nome, coz.price, coz.freq, coz.qtdCompradas]
-        ];
+function zeraSave() {
+
+    setCookies(0);
+
+    setCpc(0);
+    setCps(0);
+
+    stringSave = getStringSave();
+
+    atualizaPrecos();
+
+    document.getElementById('inv' + 0).innerHTML = infoQtdCursor;
+    document.getElementById('inv' + 1).innerHTML = infoQtdCozinheira;
+        
+    setCookie("dados", stringSave, 365);
 }
 
 
@@ -139,9 +147,6 @@ function getStringSave(){
     var infoCps = cps;
     var infoCpc = cpc;
 
-    var qtdCursor = document.getElementById('inv' + 0).innerHTML;
-    var qtdCozinheira = document.getElementById('inv' + 1).innerHTML; 
-
     var qtdCursor = itens[0][4];
     var qtdCozinheira = itens[1][4];
 
@@ -177,39 +182,10 @@ function saveGame(){
 
 }
 
-function resetGame(){
-
-    zeraItens();
-
-    setCookies(0);
-    setCps(0);
-    setCpc(0);
-
-    //var qtdCursor = document.getElementById('inv' + 0).innerHTML;
-    //var qtdCozinheira = document.getElementById('inv' + 1).innerHTML; 
-
-    var qtdCursor = itens[0][4];
-    var qtdCozinheira = itens[1][4];
-
-    var lojaPrecoCursor = itens[0][2];
-    var lojaPrecoCozinheira = itens[1][2];
-    
-    var freqCursor = itens[0][3];
-    var freqCozinheira = itens[1][3];
-
-    var stringSave = infoCookies + "|" + infoCps + "|" + infoCpc + "|" +
-                     qtdCursor + "|" + qtdCozinheira + "|" + lojaPrecoCursor + "|" +
-                     lojaPrecoCozinheira + "|" + freqCursor + "|" + freqCozinheira;
-
-    //alert(stringSave);
-
-    setCookie("dados", stringSave, 365)
-
-}
-
 function carregarInfo(){
 
     if(checkCookie("dados")) dados = getCookie("dados");
+
 
     else dados = getStringSave();
 
