@@ -1,5 +1,3 @@
-window.onload(alert("aloo"));
-
 var cookies = 0;
 var cps = 0;
 var cpc = 1;
@@ -136,7 +134,7 @@ function concatenaInventario(idItem){
 function autoSave(){
     setInterval(saveGame,5000);
 
-    //carregarInfo();
+    carregarInfo();
 }
 
 function saveGame(){
@@ -201,9 +199,6 @@ function resetGame(){
 
     setCookie("dados", stringSave, 365)
 
-    dataSave = data.getHours() + ":" +  data.getMinutes() + ":" + data.getSeconds();
-
-    document.getElementById('dataSave').innerHTML = dataSave;
 }
 
 function carregarInfo(){
