@@ -85,7 +85,7 @@ function concatenaInventario(idItem){
 
 }
 
-function atualizaInfo(){
+function salveGame(){
 
     var infoCookies = cookies;
     var infoCps = cps;
@@ -104,13 +104,17 @@ function atualizaInfo(){
                      qtdCursor + "|" + qtdCozinheira + "|" + lojaPrecoCursor + "|" +
                      lojaPrecoCozinheira + "|" + freqCursor + "|" + freqCozinheira;
 
-    alert(stringSave);
+    //alert(stringSave);
 
+    setCookie(dados, stringSave, 365)
 
 }
 
 function carregarInfo(){
-    var dados = window.prompt("Insira os dados do seu save", "x|x|x|x|x|x|x|x|x");
+
+    dados = getCookie("dados");
+
+    //var dados = window.prompt("Insira os dados do seu save", "x|x|x|x|x|x|x|x|x");
 
     var infoCookies = [];
     var infoCps = [];
@@ -292,5 +296,64 @@ function cobra(id){
 
     else{
         console.log('Saldo insuficiente!');
+    }
+}
+
+// COOKIES FUNCTIONS
+
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + "; " + expires;
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+function salvaCookieNome() {
+    var nome = getCookie("nome");
+    if (nome != "") {
+    } else {
+        nome = prompt("Não encontramos seu registro, insira o seu nome:", "");
+        if (nome != "" && nome != null) {
+            setCookie("nome", nome, 365);
+        }
+    }
+}
+
+function salvaCookieTempo() {
+    var tempo = getCookie("tempo");
+    if (tempo == "") {
+        setCookie("tempo",timeGame,365);
+    }
+    
+    else if (tempo != "" && tempo != null) {
+            setCookie("tempo", timeGame, 365);
+        }
+}
+
+function salvaCookiePontos() {
+    var cookPontos = getCookie("pontos");
+    if (cookPontos == "") {
+        setCookie("pontos",pontos,365);
+        console.log('Nao havia nenhuma pontuação registrada. Agora sim!')
+    } 
+    
+    else if(pontos > parseInt(getCookie("pontos"))) {
+        setCookie('pontos',pontos,365);
+        console.log('Vc ultapassou a pontuação anterior!')
     }
 }
