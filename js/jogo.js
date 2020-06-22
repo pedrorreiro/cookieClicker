@@ -1,3 +1,5 @@
+window.onload('PEDROO')
+
 var cookies = 0;
 var cps = 0;
 var cpc = 1;
@@ -177,7 +179,7 @@ function resetGame(){
 
     setCookies(0);
     setCps(0);
-    var infoCpc = cpc;
+    setCpc(0);
 
     //var qtdCursor = document.getElementById('inv' + 0).innerHTML;
     //var qtdCozinheira = document.getElementById('inv' + 1).innerHTML; 
