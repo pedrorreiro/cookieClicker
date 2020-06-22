@@ -85,7 +85,15 @@ function concatenaInventario(idItem){
 
 }
 
+function autoSave(){
+    setInterval(saveGame,5000);
+
+    carregarInfo();
+}
+
 function saveGame(){
+
+    var data = new Date();
 
     var infoCookies = cookies;
     var infoCps = cps;
@@ -107,6 +115,10 @@ function saveGame(){
     //alert(stringSave);
 
     setCookie("dados", stringSave, 365)
+
+    dataSave = data.getHours() + ":" +  data.getMinutes() + ":" + data.getSeconds();
+
+    document.getElementById('dataSave').innerHTML = dataSave;
 
 }
 

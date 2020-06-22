@@ -9,7 +9,7 @@
 
     </head>
 
-    <body onload="carregarInfo()">
+    <body onload="autoSave()">
         <div id="principal">
             <div id="cookieBar">
 
@@ -21,6 +21,11 @@
                     <span id="qtdCookies">0</span><br>
                     <span class="nomes">Por clique (cpc): </span><span id="cpc">1.0</span><br>
                     <span class="nomes">Por segundo (cps): </span><span id="cps">0.0</span><br>
+
+                    <div style="font-size: 0.5em;">
+                        <br><span>Último save: </span>
+                        <span id="dataSave">...</span>
+                    </div>
                     
                     <!--
                     <button onclick="menosCps(1)">- CPS</button>
