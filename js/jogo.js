@@ -1,4 +1,4 @@
-window.onload('PEDROO')
+window.onload('DASDSADA')
 
 var cookies = 0;
 var cps = 0;
@@ -133,15 +133,7 @@ function concatenaInventario(idItem){
 
 }
 
-function autoSave(){
-    setInterval(saveGame,5000);
-
-    carregarInfo();
-}
-
-function saveGame(){
-
-    var data = new Date();
+function getStringSave(){
 
     var infoCookies = cookies;
     var infoCps = cps;
@@ -159,9 +151,21 @@ function saveGame(){
     var freqCursor = itens[0][3];
     var freqCozinheira = itens[1][3];
 
-    var stringSave = infoCookies + "|" + infoCps + "|" + infoCpc + "|" +
+    return (infoCookies + "|" + infoCps + "|" + infoCpc + "|" +
                      qtdCursor + "|" + qtdCozinheira + "|" + lojaPrecoCursor + "|" +
-                     lojaPrecoCozinheira + "|" + freqCursor + "|" + freqCozinheira;
+                     lojaPrecoCozinheira + "|" + freqCursor + "|" + freqCozinheira);
+}
+
+function autoSave(){
+    carregarInfo();
+    setInterval(saveGame,5000);
+}
+
+function saveGame(){
+
+    var data = new Date();
+
+    stringSave = getStringSave();
 
     //alert(stringSave);
 
@@ -205,9 +209,9 @@ function resetGame(){
 
 function carregarInfo(){
 
-    dados = getCookie("dados");
+    if(checkCookie("dados")) dados = getCookie("dados");
 
-    //var dados = window.prompt("Insira os dados do seu save", "x|x|x|x|x|x|x|x|x");
+    else dados = getStringSave();
 
     var infoCookies = [];
     var infoCps = [];
@@ -428,26 +432,10 @@ function salvaCookieNome() {
     }
 }
 
-function salvaCookieTempo() {
-    var tempo = getCookie("tempo");
-    if (tempo == "") {
-        setCookie("tempo",timeGame,365);
-    }
-    
-    else if (tempo != "" && tempo != null) {
-            setCookie("tempo", timeGame, 365);
-        }
-}
+function checkCookie(cname) {
+    var user = getCookie(cname);
 
-function salvaCookiePontos() {
-    var cookPontos = getCookie("pontos");
-    if (cookPontos == "") {
-        setCookie("pontos",pontos,365);
-        console.log('Nao havia nenhuma pontuação registrada. Agora sim!')
-    } 
-    
-    else if(pontos > parseInt(getCookie("pontos"))) {
-        setCookie('pontos',pontos,365);
-        console.log('Vc ultapassou a pontuação anterior!')
-    }
+    if (user == "") {
+        return false
+    } else return true;
 }
