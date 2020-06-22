@@ -88,7 +88,7 @@ function concatenaInventario(idItem){
 function autoSave(){
     setInterval(saveGame,5000);
 
-    carregarInfo();
+    //carregarInfo();
 }
 
 function saveGame(){
