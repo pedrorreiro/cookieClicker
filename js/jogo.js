@@ -106,7 +106,7 @@ function salveGame(){
 
     //alert(stringSave);
 
-    setCookie(dados, stringSave, 365)
+    setCookie("dados", stringSave, 365)
 
 }
 
