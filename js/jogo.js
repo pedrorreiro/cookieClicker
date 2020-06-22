@@ -2,7 +2,45 @@ var cookies = 0;
 var cps = 0;
 var cpc = 1;
 
-itens = [[1, 'Mouse', 15, 0.1, 0],[2,'Cozinheira',200,0.1,0]];
+// Dados Loja
+
+// Cursor
+
+class Cursor{
+
+    id = 1;
+    nome = "Mouse";
+    price = 15;
+    freq = 0.1;
+    qtdCompradas = 0;
+
+}
+
+// Cursor
+
+class Cozinheira{
+
+    id = 1;
+    nome = "Cozinheira";
+    price = 200;
+    freq = 0.1;
+    qtdCompradas = 0;
+
+}
+
+curs = new Cursor();
+coz = new Cozinheira();
+
+itens = [[curs.id, curs.nome, curs.price, curs.freq, curs.qtdCompradas],
+         [coz.id, coz.nome, coz.price, coz.freq, coz.qtdCompradas]
+        ];
+
+function zeraItens() {
+    
+    itens = [[curs.id, curs.nome, curs.price, curs.freq, curs.qtdCompradas],
+         [coz.id, coz.nome, coz.price, coz.freq, coz.qtdCompradas]
+        ];
+}
 
 
 // [id][0: id, 1: nome, 2: preço, 3: frequencia, 4: qtdCompradas]
@@ -20,6 +58,10 @@ function setCps(valor){
     if(cps != 0){
         clearInterval(timer);
         var timer = setInterval(cook,1/cps * 1000);
+    }
+
+    if(cps == 0){
+        clearInterval(timer);
     }
 
 }
@@ -102,6 +144,9 @@ function saveGame(){
     var qtdCursor = document.getElementById('inv' + 0).innerHTML;
     var qtdCozinheira = document.getElementById('inv' + 1).innerHTML; 
 
+    var qtdCursor = itens[0][4];
+    var qtdCozinheira = itens[1][4];
+
     var lojaPrecoCursor = itens[0][2];
     var lojaPrecoCozinheira = itens[1][2];
     
@@ -120,6 +165,39 @@ function saveGame(){
 
     document.getElementById('dataSave').innerHTML = dataSave;
 
+}
+
+function resetGame(){
+
+    zeraItens();
+
+    setCookies(0);
+    setCps(0);
+    var infoCpc = cpc;
+
+    //var qtdCursor = document.getElementById('inv' + 0).innerHTML;
+    //var qtdCozinheira = document.getElementById('inv' + 1).innerHTML; 
+
+    var qtdCursor = itens[0][4];
+    var qtdCozinheira = itens[1][4];
+
+    var lojaPrecoCursor = itens[0][2];
+    var lojaPrecoCozinheira = itens[1][2];
+    
+    var freqCursor = itens[0][3];
+    var freqCozinheira = itens[1][3];
+
+    var stringSave = infoCookies + "|" + infoCps + "|" + infoCpc + "|" +
+                     qtdCursor + "|" + qtdCozinheira + "|" + lojaPrecoCursor + "|" +
+                     lojaPrecoCozinheira + "|" + freqCursor + "|" + freqCozinheira;
+
+    //alert(stringSave);
+
+    setCookie("dados", stringSave, 365)
+
+    dataSave = data.getHours() + ":" +  data.getMinutes() + ":" + data.getSeconds();
+
+    document.getElementById('dataSave').innerHTML = dataSave;
 }
 
 function carregarInfo(){
@@ -272,6 +350,14 @@ function cobra(id){
             itens[id][3] += itens[id][3] * 0.2 ; // item do cursor aumenta cps em 20% 
                                                  // do cps anterior do item
         
+            itens[id][4]++; // quantidade vendias
+
+            concatenaInventario(0); // aumenta no inventario
+
+            // aumenta o cookie por click
+            
+            cpc+= parseFloat(freq);
+            atualizaCpc();
         }
 
         else if(id == 1){
@@ -282,26 +368,17 @@ function cobra(id){
             
             itens[id][3] += itens[id][3] * 0.2 ; // item da cozinheira aumenta cps em 20% 
                                                  // do cps anterior do item
+     
+            itens[id][4]++; // quantidade vendias
+
+            concatenaInventario(1); // aumenta no inventario
+
+            // aumenta cookie por segundo
+
+            maisCps(freq);
+            atualizaCps();
         }
 
-        switch(id){
-            case 0: // aumenta o click por click
-                cpc+= parseFloat(freq);
-                atualizaCpc();
-                itens[id][4]++;
-                concatenaInventario(0);
-
-                break;
-            
-            case 1: // aumenta cookie por segundo
-                cpc+= parseFloat(freq);
-                maisCps(freq);
-                atualizaCps();
-                itens[id][4]++;
-                concatenaInventario(1);
-                break
-        }
-        
         console.log('Compra com sucesso!');
 
         atualizaPrecos();
