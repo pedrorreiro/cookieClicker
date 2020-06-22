@@ -85,7 +85,7 @@ function concatenaInventario(idItem){
 
 }
 
-function salveGame(){
+function saveGame(){
 
     var infoCookies = cookies;
     var infoCps = cps;
