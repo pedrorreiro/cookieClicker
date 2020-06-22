@@ -265,11 +265,11 @@ function cobra(id){
 
         if(id == 0){
             
-            // item do click aumenta preço em 25% do preço antigo
+            // item do click aumenta preço em 20% do preço antigo
 
-            itens[id][2] += (itens[id][2] * 0.25);
+            itens[id][2] += (itens[id][2] * 0.2);
 
-            itens[id][3] += 0.1;   // item do click aumenta cpc em 0.1
+            itens[id][3] += 0.3;   // item do click aumenta cpc em 0.3
         
         }
 
@@ -279,7 +279,7 @@ function cobra(id){
             
             itens[id][2] += (itens[id][2] * 0.15);
             
-            itens[id][3] += 0.3; // item da cozinheira aumenta cps em 0.1
+            itens[id][3] += 0.3; // item da cozinheira aumenta cps em 0.3
         }
 
         switch(id){
