@@ -333,7 +333,7 @@ function cobra(id){
             itens[id][3] += itens[id][3] * 0.2 ; // item do cursor aumenta cps em 20% 
                                                  // do cps anterior do item
         
-            itens[id][4]++; // quantidade vendias
+            itens[id][4]++; // quantidade vendidas
 
             concatenaInventario(0); // aumenta no inventario
 
@@ -349,7 +349,7 @@ function cobra(id){
             
             itens[id][2] += (itens[id][2] * 0.15);
             
-            itens[id][3] += itens[id][3] * 0.2 ; // item da cozinheira aumenta cps em 20% 
+            itens[id][3] += itens[id][3] * 0.4 ; // item da cozinheira aumenta cps em 40% 
                                                  // do cps anterior do item
      
             itens[id][4]++; // quantidade vendias
