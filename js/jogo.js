@@ -379,8 +379,6 @@ function cobra(id){
 
             itens[id].freq += itens[id].freq * 0.2 ; // item do cursor aumenta cps em 20% 
                                                     // do cps anterior do item
-            
-            itens[id].qtdCompradas++; // quantidade vendidas
 
             concatenaInventario(0); // aumenta no inventario
 
@@ -420,8 +418,6 @@ function cobra(id){
                 
             itens[id].freq += itens[id].freq * 0.4 ; // item da cozinheira aumenta cps em 40% 
                                                     // do cps anterior do item
-        
-            itens[id].qtdCompradas++; // quantidade vendias
 
             concatenaInventario(1); // aumenta no inventario
 
