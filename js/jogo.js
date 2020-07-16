@@ -98,26 +98,26 @@ function setCookies(valor){
 // Getters
 
 function getCookies(){
-    console.log('Cookies: ' + cookies)
+    //console.log('Cookies: ' + cookies)
 }
 
 function getcpc(){
-    console.log('cpc: ' + cpc)
+    //console.log('cpc: ' + cpc)
 }
 
 function getCps(){
-    console.log('Cps: ' + cps)
+    //console.log('Cps: ' + cps)
 }
 
 function getAuxCps(){
-    console.log('AuxCps: ' + auxCps)
+    //console.log('AuxCps: ' + auxCps)
 }
 
 function maisCps(qtd){
 
     cps = cps + qtd;
     atualizaCps();
-    console.log('Cps: ' + cps);
+    //console.log('Cps: ' + cps);
 
     clearInterval(timer);
     timer = setInterval(cook,1/cps * 1000);
@@ -133,13 +133,14 @@ function concatenaInventario(idItem){
 
 function zeraInventario(){
 
-    for(var i = 0 ; i < itens.length-1 ; i++){
+    for(var i = 0 ; i < itens.length ; i++){
         
         item = document.getElementById('inv' + i).innerHTML;
 
         itens[i].qtdCompradas = 0; // concatena vendidos na loja
     
         document.getElementById('inv' + i).innerHTML = "0";  // zera no HTML
+
     }
 
 }
@@ -346,20 +347,24 @@ function cookClick(){
     verificaDinheiro();
 }
 
-function verificaDinheiro(){
+function verificaDinheiro(){ // verifica se pode comprar os itens
 
     qtdItens = itens.length;
 
     for(var i = 0 ; i < qtdItens ; i++){
-        if(cookies >= itens[i].price){ // verifica se pode comprar os itens
-            document.getElementsByClassName('itemLoja')[i].style.background =  "rgba(124, 252, 0, 0.4)"; // red
+        if(cookies >= itens[i].price){ 
+            document.getElementsByClassName('itemLoja')[i].style.background =  "rgba(124, 252, 0, 0.4)"; // green
         }
 
-        else{   
-            document.getElementsByClassName('itemLoja')[i].style.background =  "rgba(255, 0, 0, 0.4)"; // green
+        else if((cookies < itens[i].price)){   
+            document.getElementsByClassName('itemLoja')[i].style.background =  "rgba(255, 0, 0, 0.4)"; // red
         }
     }
-
+    
+        if(itens[1].qtdCompradas == 20){ // limitando cozinheira por causa do bug
+        document.getElementById('avisoBug').style.display = "block";
+        document.getElementsByClassName('itemLoja')[1].style.background =  "rgba(255, 133, 20, 0.8)"; // laranja
+    }
 }
 
 function cobra(id){
@@ -413,28 +418,36 @@ function cobra(id){
     else if(id == 1){
 
         if(cookies >= parseInt(price)){ // se tiver dinheiro
+
+            if(itens[1].qtdCompradas == 20){ // limitando cozinheira por causa do bug
+                document.getElementById('avisoBug').style.display = "block";
+                document.getElementsByClassName('itemLoja')[1].style.background =  "rgba(255, 133, 20, 0.8)";
+            }
+
+            else{ // se tiver menos que 20
             
-            setCookies(cookies-parseFloat(price));
-            
-            // item do click aumenta preço em 15% do preço antigo
+                setCookies(cookies-parseFloat(price));
                 
-            itens[id].price += (itens[id].price * 0.15);
-                
-            itens[id].freq += itens[id].freq * 0.4 ; // item da cozinheira aumenta cps em 40% 
-                                                    // do cps anterior do item
+                // item do click aumenta preço em 15% do preço antigo
+                    
+                itens[id].price += (itens[id].price * 0.15);
+                    
+                itens[id].freq += itens[id].freq * 0.4 ; // item da cozinheira aumenta cps em 40% 
+                                                        // do cps anterior do item
 
-            concatenaInventario(1); // aumenta no inventario
+                concatenaInventario(1); // aumenta no inventario
 
-            // aumenta cookie por segundo
+                // aumenta cookie por segundo
 
-            maisCps(freq);
-            atualizaCps();
+                maisCps(freq);
+                atualizaCps();
 
-            document.getElementsByClassName('itemLoja')[1].style.border =  ""; // tira a borda vermelha
+                document.getElementsByClassName('itemLoja')[1].style.border =  ""; // tira a borda vermelha
 
-            atualizaprices();
+                atualizaprices();
 
-            verificaDinheiro();
+                verificaDinheiro();
+            }   
        
         }
 

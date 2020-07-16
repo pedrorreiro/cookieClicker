@@ -121,3 +121,9 @@ body{
 .icon:hover{
     cursor: pointer;
 }
+
+#avisoBug{
+    font-weight: bolder;
+    color: red;
+    display: none;
+}
