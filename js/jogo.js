@@ -43,7 +43,7 @@ function zeraSave() {
 
     setCookies(0);
 
-    setCpc(0);
+    setCpc(1);
     setCps(0);
 
     stringSave = getStringSave();
