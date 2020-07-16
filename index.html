@@ -5,6 +5,8 @@
         <title>Cookie</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="folha.css">
+        <link rel="stylesheet" href="folhaMobile.css" media="screen and (max-width: 768px)" />
+
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     </head>
@@ -27,68 +29,70 @@
                         <span id="dataSave">...</span>
                     </div>
                     
-                    <!--
-                    <button onclick="menosCps(1)">- CPS</button>
-                    <button onclick="maisCps(1)">+ CPS</button>
-
-                    -->
-                    
                 </div>
 
             </div>
 
-            <div id="meio">
+            <div class="separatorLeft"></div>
 
-                <div id="inventario">
-                    <p id="titBloco">Inventário<span id="hideButton" onclick="escondeInv()">  -  (ESCONDER)</span></p>
+            <div id="inventario">
+                <p id="titBloco">Inventário<span id="hideButton" onclick="escondeInv()">  -  (ESCONDER)</span></p>
 
-                    <div id="itensInv">
+                <div id="itensInv">
 
-                        <span>Cursores: <span id="inv0">0</span></span><br><br>
-                        <span>Cozinheiras: <span id="inv1">0</span></span><br><br>
-                        <div id="botoes">
-                            <!-- <button id="save" onclick="saveGame()">SALVAR</button> -->
-                            <button id="reset" onclick="zeraSave()">RESETAR</button>
-                            <!-- <button id="carregar" onclick="carregarInfo()">CARREGAR</button> -->
-                        </div>
+                    <span>Cursores: <span id="inv0">0</span></span><br><br>
+                    <span>Cozinheiras: <span id="inv1">0</span></span><br><br>
 
+                    <div id="botoes">
+                        <!-- <button id="save" onclick="saveGame()">SALVAR</button> -->
+                        <button id="reset" onclick="zeraSave()">RESETAR</button>
+                        <!-- <button id="carregar" onclick="carregarInfo()">CARREGAR</button> -->
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="separatorRight"></div>
+
+            <div id=loja>
+
+                <p id="titBloco">Loja</p>
+
+                <div class="itemLoja" onclick="compra(0)">
+                    <img src='img/cursor.png' class="imgItem">
+                    <div class="dadosItem">
+                        <p class="nomeItem">Cursor</p>
+                        <p class="descItem">Aumenta  produção de cookie por click.</p>
+                        <span>Preço: </span><span class="precoItem" id="0">0</span>
                     </div>
                 </div>
-            
-                <div id=loja>
-
-                    <p id="titBloco">Loja</p>
-
-                    <div class="itemLoja" onclick="compra(0)">
-                        <img src='img/cursor.png' class="imgItem">
-                        <div class="dadosItem">
-                            <p class="nomeItem">Cursor</p>
-                            <p class="descItem">Aumenta  produção de cookie por click.</p>
-                            <span>Preço: </span><span class="precoItem" id="0">0</span>
-                        </div>
-                    </div>
 
                 <hr>
-
-                    <div class="itemLoja" onclick="compra(1)">
-                        <img src='img/cozinheira.png' class="imgItem">
-                        <div class="dadosItem">
-                            <p class="nomeItem">Cozinheira</p>
-                            <p class="descItem">Aumenta a produção em <br> cookie por segundo e cookie por click.</p>
-                            <span>Preço: </span><span class="precoItem" id="1">0</span>
-                        </div><br><br>
-                        <p id="avisoBug">A cozinheira está com bug.<br>Então limitamos o máximo para 20</p>
-                    </div>
-
+                
+                <div class="itemLoja" onclick="compra(1)">
+                    <img src='img/cozinheira.png' class="imgItem">
+                    <div class="dadosItem">
+                        <p class="nomeItem">Cozinheira</p>
+                        <p class="descItem">Aumenta a produção em <br> cookie por segundo e cookie por click.</p>
+                        <span>Preço: </span><span class="precoItem" id="1">0</span>
+                    </div><br><br>
+                    <p id="avisoBug">A cozinheira está com bug.<br>Então limitamos o máximo para 20</p>
+                </div>
+                
             </div>
 
             <div id="rodape">
                 <p>Copyright &copy 2020 - Todos os direitos reservados.</p>
                 <span>Feito por Pedro Henrique - </span>
-    
+
                 <a href="http://www.instagram.com/pedro_riqe" target="_blank"><img class="icon" src="img/insta.png"></a>
                 <a href="http://www.facebook.com/PedroHenAlves" target="_blank"><img class="icon" src="img/facebook.png"></a>
             </div>
-        </div>  
+
+            
+        
+        </div>
+
     </body>
 </html>

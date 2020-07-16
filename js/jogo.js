@@ -1,3 +1,10 @@
+document.getElementById('principal').style.height = screen.height + 'px';
+
+window.onresize = function(){
+    document.getElementById('principal').style.height = screen.height + 'px';
+    console.log(screen.height);
+}
+
 style = "color:blue;font-size:1.1em;font-weight:bold";
 style2 = "color:red; font-weight:bold;font-size:1.4em;";
 styleBold = "font-weight:bold";
