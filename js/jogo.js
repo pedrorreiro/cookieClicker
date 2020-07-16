@@ -1,3 +1,11 @@
+style = "color:blue;font-size:1.1em;font-weight:bold";
+style2 = "color:red; font-weight:bold;font-size:1.4em;";
+styleBold = "font-weight:bold";
+   
+   console.info("%cNão trapaceie, senão perde todo o conceito de diversão do game", style2);
+   console.info("%cTodos os direitos reservados © 2020 - Pedro H.",style);
+   console.info("");
+
 var cookies = 0;
 var cps = 0;
 var cpc = 1;
@@ -212,7 +220,7 @@ function carregarInfo(){
     infoFreqCursor = parseFloat(dados[7]);
     infoFreqCozinheira = parseFloat(dados[8]);
 
-    console.log(infoCookies 
+    console.info("%cCódigo do save atual: " + infoCookies 
                 + "|" + infoCps
                 + "|" + infoCpc 
                 + "|" + infoQtdCursor
@@ -220,7 +228,8 @@ function carregarInfo(){
                 + "|" + infoLojapriceCursor 
                 + "|" + infoLojapriceCozinheira
                 + "|" + infoFreqCursor
-                + "|" + infoFreqCozinheira);
+                + "|" + infoFreqCozinheira, styleBold);
+    console.info("");
 
     setCookies(infoCookies);
     setCps(infoCps);
@@ -317,7 +326,6 @@ function cook(){
 
     setCookies(parseInt(cookies));
     document.getElementById('qtdCookies').innerHTML = cookies;
-    //console.log('+' + cps + ' : ' + cookies)
 
     atualizaCookies();
     atualizaCps();
@@ -332,8 +340,6 @@ function cookClick(){
     }
 
     setCookies(parseInt(cookies + cpc));
-
-    //console.log('+' + cps + ' : ' + cookies)
 
     atualizaCps();
 
@@ -390,8 +396,6 @@ function cobra(id){
 
             document.getElementsByClassName('itemLoja')[0].style.border =  ""; // tira a borda vermelha
 
-            console.log('Compra com sucesso!');
-
             atualizaprices();
 
             verificaDinheiro();
@@ -428,8 +432,6 @@ function cobra(id){
 
             document.getElementsByClassName('itemLoja')[1].style.border =  ""; // tira a borda vermelha
 
-            console.log('Compra com sucesso!');
-
             atualizaprices();
 
             verificaDinheiro();
@@ -457,7 +459,7 @@ function escondeInv(){
 
         document.getElementById('itensInv').style.display = "none";
         document.getElementById('hideButton').innerHTML = "  -  (MOSTRAR)";
-        console.log('a');
+
     }
 
     else{
