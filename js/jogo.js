@@ -37,9 +37,7 @@ class Cozinheira{
 curs = new Cursor();
 coz = new Cozinheira();
 
-itens = [[curs.id, curs.nome, curs.price, curs.freq, curs.qtdCompradas],
-         [coz.id, coz.nome, coz.price, coz.freq, coz.qtdCompradas]
-        ];
+itens = [curs,coz];
 
 function zeraSave() {
 
@@ -50,16 +48,17 @@ function zeraSave() {
 
     stringSave = getStringSave();
 
-    atualizaPrecos();
+    curs = new Cursor();
+    coz = new Cozinheira();
 
-    document.getElementById('inv' + 0).innerHTML = infoQtdCursor;
-    document.getElementById('inv' + 1).innerHTML = infoQtdCozinheira;
+    itens = [curs,coz]; // atualizando lista de itens
+
+    atualizaprices();
+
+    zeraInventario();
         
-    setCookie("dados", stringSave, 365);
+    setCookie("dados", stringSave, 365); // atualiza cookies zerados
 }
-
-
-// [id][0: id, 1: nome, 2: preço, 3: frequencia, 4: qtdCompradas]
 
 // Setters
 
@@ -106,23 +105,6 @@ function getAuxCps(){
     console.log('AuxCps: ' + auxCps)
 }
 
-// -----------------------------------------------
-
-/*
-function menosCps(qtd){
-
-    if(cps != 1 && cps != 0){ //
-
-        cps = cps - qtd;
-        atualizaCps();
-        console.log('Cps: ' + cps);
-
-        clearInterval(timer);
-        timer = setInterval(cook,1/cps * 1000);
-    }
-}
-*/
-
 function maisCps(qtd){
 
     cps = cps + qtd;
@@ -136,8 +118,21 @@ function maisCps(qtd){
 function concatenaInventario(idItem){
     item = document.getElementById('inv' + idItem).innerHTML;
 
-    document.getElementById('inv' + idItem).innerHTML = (parseInt(item) + 1).toString();
+    itens[idItem].qtdCompradas++; // concatena vendidos na loja
 
+    document.getElementById('inv' + idItem).innerHTML = (parseInt(item) + 1).toString();  // concatena no HTML
+}
+
+function zeraInventario(){
+
+    for(var i = 0 ; i < itens.length-1 ; i++){
+        
+        item = document.getElementById('inv' + i).innerHTML;
+
+        itens[i].qtdCompradas = 0; // concatena vendidos na loja
+    
+        document.getElementById('inv' + i).innerHTML = "0";  // zera no HTML
+    }
 
 }
 
@@ -147,18 +142,18 @@ function getStringSave(){
     var infoCps = cps;
     var infoCpc = cpc;
 
-    var qtdCursor = itens[0][4];
-    var qtdCozinheira = itens[1][4];
+    var qtdCursor = itens[0].qtdCompradas;
+    var qtdCozinheira = itens[1].qtdCompradas;
 
-    var lojaPrecoCursor = itens[0][2];
-    var lojaPrecoCozinheira = itens[1][2];
+    var lojapriceCursor = itens[0].price;
+    var lojapriceCozinheira = itens[1].price;
     
-    var freqCursor = itens[0][3];
-    var freqCozinheira = itens[1][3];
+    var freqCursor = itens[0].freq;
+    var freqCozinheira = itens[1].freq;
 
     return (infoCookies + "|" + infoCps + "|" + infoCpc + "|" +
-                     qtdCursor + "|" + qtdCozinheira + "|" + lojaPrecoCursor + "|" +
-                     lojaPrecoCozinheira + "|" + freqCursor + "|" + freqCozinheira);
+                     qtdCursor + "|" + qtdCozinheira + "|" + lojapriceCursor + "|" +
+                     lojapriceCozinheira + "|" + freqCursor + "|" + freqCozinheira);
 }
 
 function autoSave(){
@@ -196,8 +191,8 @@ function carregarInfo(){
     var infoQtdCursor = [];
     var infoQtdCozinheira = [];
 
-    var infoLojaPrecoCursor = [];
-    var infoLojaPrecoCozinheira = [];
+    var infoLojapriceCursor = [];
+    var infoLojapriceCozinheira = [];
 
     var infoFreqCursor = [];
     var infoFreqCozinheira = [];
@@ -211,8 +206,8 @@ function carregarInfo(){
     infoQtdCursor = parseInt(dados[3]);
     infoQtdCozinheira = parseInt(dados[4]);
 
-    infoLojaPrecoCursor = parseFloat(dados[5]);
-    infoLojaPrecoCozinheira = parseFloat(dados[6]);
+    infoLojapriceCursor = parseFloat(dados[5]);
+    infoLojapriceCozinheira = parseFloat(dados[6]);
 
     infoFreqCursor = parseFloat(dados[7]);
     infoFreqCozinheira = parseFloat(dados[8]);
@@ -222,8 +217,8 @@ function carregarInfo(){
                 + "|" + infoCpc 
                 + "|" + infoQtdCursor
                 + "|" + infoQtdCozinheira
-                + "|" + infoLojaPrecoCursor 
-                + "|" + infoLojaPrecoCozinheira
+                + "|" + infoLojapriceCursor 
+                + "|" + infoLojapriceCozinheira
                 + "|" + infoFreqCursor
                 + "|" + infoFreqCozinheira);
 
@@ -235,15 +230,15 @@ function carregarInfo(){
 
     itens[1][4] = infoQtdCozinheira; // qtdCozinheira inventario
 
-    itens[0][2] = infoLojaPrecoCursor; // preçoCursor
+    itens[0][2] = infoLojapriceCursor; // preçoCursor
 
-    itens[1][2] = infoLojaPrecoCozinheira; // preçoCozinheira
+    itens[1][2] = infoLojapriceCozinheira; // preçoCozinheira
 
     itens[0][3] = parseFloat(infoFreqCursor); // freqCursor
 
     itens[1][3] = parseFloat(infoFreqCozinheira); // freqCozinheira
 
-    atualizaPrecos();
+    atualizaprices();
 
     document.getElementById('inv' + 0).innerHTML = infoQtdCursor;
     document.getElementById('inv' + 1).innerHTML = infoQtdCozinheira;
@@ -304,11 +299,10 @@ function atualizaCookies(){
     } 
 }
 
-function atualizaPrecos(){
-        // [id][0: id, 1: nome, 2: preço, 3: frequencia, 4: qtdCompradas]
+function atualizaprices(){
 
     for(var id = 0 ; id < 2 ; id++){
-        document.getElementById(id).innerHTML =  parseFloat(itens[id][2]).toFixed(0).toString();
+        document.getElementById(id).innerHTML =  parseFloat(itens[id].price).toFixed(0).toString();
         
     }
 }
@@ -316,7 +310,7 @@ function atualizaPrecos(){
 function cook(){
 
     if(cookies == 0){
-        atualizaPrecos();
+        atualizaprices();
     }
 
     cookies++;
@@ -333,7 +327,7 @@ function cook(){
 function cookClick(){
 
     if(cookies == 0){
-        atualizaPrecos();
+        atualizaprices();
     }
 
     setCookies(parseInt(cookies + cpc));
@@ -346,13 +340,11 @@ function cookClick(){
 }
 
 function verificaDinheiro(){
-    
-    // [id][0: id, 1: nome, 2: preço, 3: frequencia, 4: qtdCompradas]
 
     qtdItens = itens.length;
 
     for(var i = 0 ; i < qtdItens ; i++){
-        if(cookies >= itens[i][2]){ // verifica se pode comprar os itens
+        if(cookies >= itens[i].price){ // verifica se pode comprar os itens
             document.getElementsByClassName('itemLoja')[i].style.background =  "rgba(124, 252, 0, 0.4)"; // red
         }
 
@@ -367,42 +359,43 @@ function cobra(id){
 
     id = parseInt(id); // id do item
 
-    var freq = itens[id][3];
-    var nome = itens[id][1];
-    var preco = itens[id][2];
+    // itens[0] cursor, itens[1] cozinheira
 
-    // [id][0: id, 1: nome, 2: preço, 3: frequencia, 4: qtdCompradas]
-
-    console.log('ID: ' + id + ' Nome: ' + nome + ' Preço: ' + preco);
+    var freq = itens[id].freq;
+    var nome = itens[id].nome;
+    var price = itens[id].price;
 
     if(id == 0){
 
         
-        if(cookies >= parseInt(preco)){ // se tiver dinheiro
+        if(cookies >= parseInt(price)){ // se tiver dinheiro
             
-            setCookies(cookies-parseFloat(preco));
+            setCookies(cookies-parseFloat(price));
                 
             // item do click aumenta preço em 20% do preço antigo
 
-            itens[id][2] += (itens[id][2] * 0.2);
+            itens[id].price += (itens[id].price * 0.2);
 
-            itens[id][3] += itens[id][3] * 0.2 ; // item do cursor aumenta cps em 20% 
+            itens[id].freq += itens[id].freq * 0.2 ; // item do cursor aumenta cps em 20% 
                                                     // do cps anterior do item
             
-            itens[id][4]++; // quantidade vendidas
+            itens[id].qtdCompradas++; // quantidade vendidas
 
             concatenaInventario(0); // aumenta no inventario
 
             // aumenta o cookie por click
                 
             cpc+= parseFloat(freq);
+
             atualizaCpc();
 
             document.getElementsByClassName('itemLoja')[0].style.border =  ""; // tira a borda vermelha
 
             console.log('Compra com sucesso!');
 
-            atualizaPrecos();
+            atualizaprices();
+
+            verificaDinheiro();
        
         }
 
@@ -416,18 +409,18 @@ function cobra(id){
         
     else if(id == 1){
 
-        if(cookies >= parseInt(preco)){ // se tiver dinheiro
+        if(cookies >= parseInt(price)){ // se tiver dinheiro
             
-            setCookies(cookies-parseFloat(preco));
+            setCookies(cookies-parseFloat(price));
             
             // item do click aumenta preço em 15% do preço antigo
                 
-            itens[id][2] += (itens[id][2] * 0.15);
+            itens[id].price += (itens[id].price * 0.15);
                 
-            itens[id][3] += itens[id][3] * 0.4 ; // item da cozinheira aumenta cps em 40% 
+            itens[id].freq += itens[id].freq * 0.4 ; // item da cozinheira aumenta cps em 40% 
                                                     // do cps anterior do item
         
-            itens[id][4]++; // quantidade vendias
+            itens[id].qtdCompradas++; // quantidade vendias
 
             concatenaInventario(1); // aumenta no inventario
 
@@ -440,7 +433,9 @@ function cobra(id){
 
             console.log('Compra com sucesso!');
 
-            atualizaPrecos();
+            atualizaprices();
+
+            verificaDinheiro();
        
         }
 
