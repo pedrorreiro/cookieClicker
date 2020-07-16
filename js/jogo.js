@@ -226,17 +226,17 @@ function carregarInfo(){
     setCps(infoCps);
     setCpc(infoCpc);
 
-    itens[0][4] = infoQtdCursor; // qtdCursor inventario
+    itens[0].qtdCompradas = infoQtdCursor; // qtdCursor inventario
 
-    itens[1][4] = infoQtdCozinheira; // qtdCozinheira inventario
+    itens[1].qtdCompradas = infoQtdCozinheira; // qtdCozinheira inventario
 
-    itens[0][2] = infoLojapriceCursor; // preçoCursor
+    itens[0].price = infoLojapriceCursor; // preçoCursor
 
-    itens[1][2] = infoLojapriceCozinheira; // preçoCozinheira
+    itens[1].price = infoLojapriceCozinheira; // preçoCozinheira
 
-    itens[0][3] = parseFloat(infoFreqCursor); // freqCursor
+    itens[0].freq = parseFloat(infoFreqCursor); // freqCursor
 
-    itens[1][3] = parseFloat(infoFreqCozinheira); // freqCozinheira
+    itens[1].freq = parseFloat(infoFreqCozinheira); // freqCozinheira
 
     atualizaprices();
 
@@ -319,6 +319,7 @@ function cook(){
     document.getElementById('qtdCookies').innerHTML = cookies;
     //console.log('+' + cps + ' : ' + cookies)
 
+    atualizaCookies();
     atualizaCps();
 
     verificaDinheiro();
@@ -447,6 +448,9 @@ function cobra(id){
         document.getElementsByClassName('itemLoja');
        
     }
+
+    atualizaCookies();
+    atualizaCps();
 
 }
 
