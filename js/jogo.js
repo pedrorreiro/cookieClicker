@@ -367,7 +367,7 @@ function verificaDinheiro(){ // verifica se pode comprar os itens
     }
 }
 
-function cobra(id){
+function compra(id){
 
     id = parseInt(id); // id do item
 
