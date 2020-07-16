@@ -83,7 +83,7 @@ function setCpc(valor){
 }
 
 function setCookies(valor){
-    cookies = valor;
+    cookies = parseInt(valor);
     atualizaCookies();
 }
 
@@ -369,7 +369,7 @@ function cobra(id){
     if(id == 0){
 
         
-        if(cookies >= parseInt(price)){ // se tiver dinheiro
+        if(cookies >= parseFloat(price)){ // se tiver dinheiro
             
             setCookies(cookies-parseFloat(price));
                 
