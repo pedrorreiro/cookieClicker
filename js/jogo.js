@@ -380,7 +380,7 @@ function cobra(id){
         
         if(cookies >= parseInt(preco)){ // se tiver dinheiro
             
-            setCookies(cookies-parseInt(preco));
+            setCookies(cookies-parseFloat(preco));
                 
             // item do click aumenta preço em 20% do preço antigo
 
@@ -418,7 +418,7 @@ function cobra(id){
 
         if(cookies >= parseInt(preco)){ // se tiver dinheiro
             
-            setCookies(cookies-parseInt(preco));
+            setCookies(cookies-parseFloat(preco));
             
             // item do click aumenta preço em 15% do preço antigo
                 
@@ -459,7 +459,7 @@ function escondeInv(){
 
     if(document.getElementById('itensInv').style.display == "inline-block" 
         || document.getElementById('itensInv').style.display == ""){
-            
+
         document.getElementById('itensInv').style.display = "none";
         document.getElementById('hideButton').innerHTML = "  -  (MOSTRAR)";
         console.log('a');
