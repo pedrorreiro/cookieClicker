@@ -262,12 +262,46 @@ function atualizaCps(){
 
 function atualizaCpc(){
     // atualiza cookie por clique
-    document.getElementById('cpc').innerHTML = parseFloat(cpc).toFixed(1);
+
+    var auxCpc = parseFloat(cpc);
+
+    if(cpc >= 1000000 && cpc < 1000000000){
+        document.getElementById('unidCpc').innerHTML = ' million';
+        document.getElementById('cpc').innerHTML = parseFloat(auxCpc/1000000).toFixed(2);
+    }
+
+    else if(cpc >= 1000000000 && cpc < 1000000000000){
+        document.getElementById('unidCpc').innerHTML = ' billion';
+        document.getElementById('cpc').innerHTML = parseFloat(auxCpc/1000000000).toFixed(2);
+    }
+
+    else{
+        document.getElementById('unidCpc').innerHTML = '';
+        document.getElementById('cpc').innerHTML = cpc;
+    } 
+
+    
 
 }
 
 function atualizaCookies(){
-    document.getElementById('qtdCookies').innerHTML = parseInt(cookies);
+
+    var auxCookies = parseFloat(cookies);
+
+    if(cookies >= 1000000 && cookies < 1000000000){
+        document.getElementById('unid').innerHTML = ' million';
+        document.getElementById('qtdCookies').innerHTML = parseFloat(auxCookies/1000000).toFixed(2);
+    }
+
+    else if(cookies >= 1000000000 && cookies < 1000000000000){
+        document.getElementById('unid').innerHTML = ' billion';
+        document.getElementById('qtdCookies').innerHTML = parseFloat(auxCookies/1000000000).toFixed(2);
+    }
+
+    else{
+        document.getElementById('qtdCookies').innerHTML = cookies;
+        document.getElementById('unid').innerHTML = '';
+    } 
 }
 
 function atualizaPrecos(){
@@ -278,8 +312,6 @@ function atualizaPrecos(){
         
     }
 }
-
-
 
 function cook(){
 
@@ -294,6 +326,8 @@ function cook(){
     //console.log('+' + cps + ' : ' + cookies)
 
     atualizaCps();
+
+    verificaDinheiro();
 }
 
 function cookClick(){
@@ -303,10 +337,30 @@ function cookClick(){
     }
 
     setCookies(parseInt(cookies + cpc));
-    document.getElementById('qtdCookies').innerHTML = cookies;
+
     //console.log('+' + cps + ' : ' + cookies)
 
     atualizaCps();
+
+    verificaDinheiro();
+}
+
+function verificaDinheiro(){
+    
+    // [id][0: id, 1: nome, 2: preço, 3: frequencia, 4: qtdCompradas]
+
+    qtdItens = itens.length;
+
+    for(var i = 0 ; i < qtdItens ; i++){
+        if(cookies >= itens[i][2]){ // verifica se pode comprar os itens
+            document.getElementsByClassName('itemLoja')[i].style.background =  "rgba(124, 252, 0, 0.4)"; // red
+        }
+
+        else{   
+            document.getElementsByClassName('itemLoja')[i].style.background =  "rgba(255, 0, 0, 0.4)"; // green
+        }
+    }
+
 }
 
 function cobra(id){
@@ -321,37 +375,58 @@ function cobra(id){
 
     console.log('ID: ' + id + ' Nome: ' + nome + ' Preço: ' + preco);
 
-    if(cookies >= parseInt(preco)){
-        setCookies(cookies-parseInt(preco));
+    if(id == 0){
 
-        if(id == 0){
+        
+        if(cookies >= parseInt(preco)){ // se tiver dinheiro
             
+            setCookies(cookies-parseInt(preco));
+                
             // item do click aumenta preço em 20% do preço antigo
 
             itens[id][2] += (itens[id][2] * 0.2);
 
             itens[id][3] += itens[id][3] * 0.2 ; // item do cursor aumenta cps em 20% 
-                                                 // do cps anterior do item
-        
+                                                    // do cps anterior do item
+            
             itens[id][4]++; // quantidade vendidas
 
             concatenaInventario(0); // aumenta no inventario
 
             // aumenta o cookie por click
-            
+                
             cpc+= parseFloat(freq);
             atualizaCpc();
+
+            document.getElementsByClassName('itemLoja')[0].style.border =  ""; // tira a borda vermelha
+
+            console.log('Compra com sucesso!');
+
+            atualizaPrecos();
+       
         }
 
-        else if(id == 1){
+        else{ // se nao tiver dinheiro
+            
+            document.getElementsByClassName('itemLoja')[0].style.background =  "rgba(255, 0, 0, 0.4)";
+
+
+        }
+    }
+        
+    else if(id == 1){
+
+        if(cookies >= parseInt(preco)){ // se tiver dinheiro
+            
+            setCookies(cookies-parseInt(preco));
             
             // item do click aumenta preço em 15% do preço antigo
-            
+                
             itens[id][2] += (itens[id][2] * 0.15);
-            
+                
             itens[id][3] += itens[id][3] * 0.4 ; // item da cozinheira aumenta cps em 40% 
-                                                 // do cps anterior do item
-     
+                                                    // do cps anterior do item
+        
             itens[id][4]++; // quantidade vendias
 
             concatenaInventario(1); // aumenta no inventario
@@ -360,16 +435,39 @@ function cobra(id){
 
             maisCps(freq);
             atualizaCps();
+
+            document.getElementsByClassName('itemLoja')[1].style.border =  ""; // tira a borda vermelha
+
+            console.log('Compra com sucesso!');
+
+            atualizaPrecos();
+       
         }
 
-        console.log('Compra com sucesso!');
+        else{ // se nao tiver dinheiro
+            
+            document.getElementsByClassName('itemLoja')[1].style.background =  "rgba(255, 0, 0, 0.4)";
+        }
 
-        atualizaPrecos();
+        document.getElementsByClassName('itemLoja');
+       
+    }
 
+}
+
+function escondeInv(){
+
+    if(document.getElementById('itensInv').style.display == "inline-block" 
+        || document.getElementById('itensInv').style.display == ""){
+            
+        document.getElementById('itensInv').style.display = "none";
+        document.getElementById('hideButton').innerHTML = "  -  (MOSTRAR)";
+        console.log('a');
     }
 
     else{
-        console.log('Saldo insuficiente!');
+        document.getElementById('itensInv').style.display = "inline-block";
+        document.getElementById('hideButton').innerHTML = "  -  (ESCONDER)";
     }
 }
 
