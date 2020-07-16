@@ -272,7 +272,7 @@ function atualizaCpc(){
 
     else{
         document.getElementById('unidCpc').innerHTML = '';
-        document.getElementById('cpc').innerHTML = cpc;
+        document.getElementById('cpc').innerHTML = cpc.toFixed(2);
     } 
 
     
@@ -294,7 +294,7 @@ function atualizaCookies(){
     }
 
     else{
-        document.getElementById('qtdCookies').innerHTML = cookies;
+        document.getElementById('qtdCookies').innerHTML = cookies.toFixed(2);
         document.getElementById('unid').innerHTML = '';
     } 
 }
