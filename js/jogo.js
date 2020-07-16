@@ -294,7 +294,7 @@ function atualizaCookies(){
     }
 
     else{
-        document.getElementById('qtdCookies').innerHTML = cookies.toFixed(2);
+        document.getElementById('qtdCookies').innerHTML = cookies;
         document.getElementById('unid').innerHTML = '';
     } 
 }
