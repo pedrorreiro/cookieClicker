@@ -18,8 +18,8 @@
              
                 <div id="dadosCookie">
                     <span class="nomes">Cookies: </span>
-                    <span id="qtdCookies">0</span><br>
-                    <span class="nomes">Por clique (cpc): </span><span id="cpc">1.0</span><br>
+                    <span id="qtdCookies">0</span><span id="unid"></span><br>
+                    <span class="nomes">Por clique (cpc): </span><span id="cpc">1.0</span><span id="unidCpc"></span><br>
                     <span class="nomes">Por segundo (cps): </span><span id="cps">0.0</span><br>
 
                     <div style="font-size: 0.5em;">
@@ -40,13 +40,18 @@
             <div id="meio">
 
                 <div id="inventario">
-                    <p id="titBloco">Inventário</p>
-                    <span>Cursores: <span id="inv0">0</span></span><br><br>
-                    <span>Cozinheiras: <span id="inv1">0</span></span><br><br>
-                    <div id="botoes">
-                        <!-- <button id="save" onclick="saveGame()">SALVAR</button> -->
-                        <button id="reset" onclick="zeraSave()">RESETAR</button>
-                        <!-- <button id="carregar" onclick="carregarInfo()">CARREGAR</button> -->
+                    <p id="titBloco">Inventário<span id="hideButton" onclick="escondeInv()">  -  (ESCONDER)</span></p>
+
+                    <div id="itensInv">
+
+                        <span>Cursores: <span id="inv0">0</span></span><br><br>
+                        <span>Cozinheiras: <span id="inv1">0</span></span><br><br>
+                        <div id="botoes">
+                            <!-- <button id="save" onclick="saveGame()">SALVAR</button> -->
+                            <button id="reset" onclick="zeraSave()">RESETAR</button>
+                            <!-- <button id="carregar" onclick="carregarInfo()">CARREGAR</button> -->
+                        </div>
+
                     </div>
                 </div>
             

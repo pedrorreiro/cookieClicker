@@ -55,6 +55,11 @@ body{
 .itemLoja{
     background: white;
     border-radius: 7px;
+    padding: 20px;
+}
+
+#hideButton:hover{
+    cursor: pointer;;
 }
 
 .dadosItem{
