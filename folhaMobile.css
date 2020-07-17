@@ -11,6 +11,10 @@ body{
     height: 100%;
 }
 
+#msgMobile{
+    display: none;
+}
+
 #meio{
     
     width: 90%;
