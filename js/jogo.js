@@ -1,7 +1,4 @@
-document.getElementById('principal').style.height = screen.height + 'px';
-
 window.onresize = function(){
-    document.getElementById('principal').style.height = screen.height + 'px';
 
     //console.log(screen.width);
 
@@ -371,11 +368,11 @@ function verificaDinheiro(){ // verifica se pode comprar os itens
 
     for(var i = 0 ; i < qtdItens ; i++){
         if(cookies >= itens[i].price){ 
-            document.getElementsByClassName('itemLoja')[i].style.background =  "rgba(124, 252, 0, 0.4)"; // green
+            document.getElementsByClassName('itemLoja')[i].style.background =  "rgba(124, 252, 0, 0.8)"; // green
         }
 
         else if((cookies < itens[i].price)){   
-            document.getElementsByClassName('itemLoja')[i].style.background =  "rgba(255, 0, 0, 0.4)"; // red
+            document.getElementsByClassName('itemLoja')[i].style.background =  "rgba(255, 0, 0, 0.8)"; // red
         }
     }
     
@@ -427,7 +424,7 @@ function compra(id){
 
         else{ // se nao tiver dinheiro
             
-            document.getElementsByClassName('itemLoja')[0].style.background =  "rgba(255, 0, 0, 0.4)";
+            document.getElementsByClassName('itemLoja')[0].style.background =  "rgba(255, 0, 0, 0.8)";
 
 
         }
@@ -450,7 +447,7 @@ function compra(id){
                     
                 itens[id].price += (itens[id].price * 0.15);
                     
-                itens[id].freq += itens[id].freq * 0.4 ; // item da cozinheira aumenta cps em 40% 
+                itens[id].freq += itens[id].freq * 0.8 ; // item da cozinheira aumenta cps em 40% 
                                                         // do cps anterior do item
 
                 concatenaInventario(1); // aumenta no inventario
@@ -471,7 +468,7 @@ function compra(id){
 
         else{ // se nao tiver dinheiro
             
-            document.getElementsByClassName('itemLoja')[1].style.background =  "rgba(255, 0, 0, 0.4)";
+            document.getElementsByClassName('itemLoja')[1].style.background =  "rgba(255, 0, 0, 0.8)";
         }
 
         document.getElementsByClassName('itemLoja');

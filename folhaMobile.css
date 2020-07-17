@@ -28,6 +28,7 @@ body{
 
 .separatorLeft{
     display: none;
+    background-image: url(img/background.png);
 }
 
 .separatorRight{
