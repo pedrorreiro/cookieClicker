@@ -48,6 +48,7 @@ body{
     height: 85%;
     padding-top: 2%;
     
+    overflow: scroll;
     
     background: white;
     text-align: center;
@@ -130,6 +131,8 @@ body{
     padding-right: 2%;
     padding-bottom: 2%;
     height: 85%;
+
+    overflow: scroll;
     
     background: white;
     text-align: center;
@@ -148,6 +151,7 @@ body{
     left: 31%;
     position: absolute;
     display: inline-block;
+    overflow: scroll;
 
    }
 
