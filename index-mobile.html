@@ -4,19 +4,21 @@
         
         <title>Cookie</title>
         <meta charset="UTF-8">
-        <link rel="stylesheet" type="text/css" href="folha.css">
+        <link rel="stylesheet" type="text/css" href="folhaMobile.css">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     </head>
 
     <body onload="autoSave()">
-
-        <a id="msgMobile" href="index-mobile.html"><p>CLIQUE AQUI PARA IR A VERSÃO MOBILE</p></a>
-
         <div id="principal">
-            
+
+            <a id="msgMobile" href="index.html"><p>CLIQUE AQUI PARA IR A VERSÃO DESKTOP</p></a>
+
             <div id="cookieBar">
+
+                <img id="cookie" src="img/cookie.png" onclick="cookClick()"></img><br>
+                <script src="js/jogo.js"></script>
              
                 <div id="dadosCookie">
                     <span class="nomes">Cookies: </span>
@@ -30,9 +32,6 @@
                     </div>
                     
                 </div>
-
-                <img id="cookie" src="img/cookie.png" onclick="cookClick()"></img><br>
-                <script src="js/jogo.js"></script>
 
             </div>
 

@@ -2,7 +2,18 @@ document.getElementById('principal').style.height = screen.height + 'px';
 
 window.onresize = function(){
     document.getElementById('principal').style.height = screen.height + 'px';
-    console.log(screen.height);
+
+    //console.log(screen.width);
+
+    if(screen.width <= 920){
+        document.getElementById('principal').style.display = "none";
+        document.getElementById('msgMobile').style.display = "block";
+    }
+
+    else{
+        document.getElementById('principal').style.display = "inline-block";
+        document.getElementById('msgMobile').style.display = "none";
+    }
 }
 
 style = "color:blue;font-size:1.1em;font-weight:bold";

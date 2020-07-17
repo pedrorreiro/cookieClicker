@@ -4,6 +4,15 @@ body{
     overflow-y: hidden;
 }
 
+#msgMobile{
+    display: none;
+    color: black;
+    text-decoration: none;
+    text-align: center;
+    font-weight: bold;
+    font-size: 2em;
+}
+
 #principal{
 
     width: 100%;
@@ -17,11 +26,41 @@ body{
 }
 
 #cookie{
-    width: 50%;
+    width: 200px;
+    transition: all 0.1s;
+    position: relative;
+    margin-top: 5%;
 }
 
 #cookie:hover{
     cursor: pointer;
+    width: 210px;
+}
+
+#cookie:active{
+    width: 200px;
+}
+
+#cookieBar{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    bottom: 0px;
+    width: 30%;
+    display: block;
+    padding: 20px 0px;
+    background-image: url(img/background.png);
+    text-align: center;
+}
+
+#dadosCookie{
+    font-size: 1.8em;
+    position: relative;
+    text-align: center;
+    background-color:rgb(0, 0, 0, 0.4);
+    color: white;
+    font-weight: bold;
+
 }
 
 .separatorLeft{
@@ -29,7 +68,7 @@ body{
     position: absolute;
     height: 100%;
     width: 1%;
-    left: 31%;
+    left: 30%;
     background: red;
     top: 0px;
 }
@@ -42,23 +81,6 @@ body{
     right: 31%;
     background: red;
     top: 0px;
-}
-
-#cookieBar{
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    bottom: 0px;
-    width: 30%;
-    display: inline-block;
-    padding: 10px;
-    padding-top: 50px;
-    background: white;
-    text-align: center;
-}
-
-#dadosCookie{
-    font-size: 2em;
 }
 
 .nomes{
