@@ -172,6 +172,7 @@ function getStringSave(){
 function autoSave(){
     carregarInfo();
     setInterval(saveGame,5000);
+    console.log('executando funct autoSave()');
 }
 
 function saveGame(){
@@ -197,7 +198,7 @@ function carregarInfo(){
 
     else dados = getStringSave();
 
-    var infoCookies;;
+    var infoCookies;
     var infoCps;
     var infoCpc;
     var infoAllCookies;
@@ -229,7 +230,7 @@ function carregarInfo(){
     infoFreqCursor = parseFloat(dados[9]);
     infoFreqCozinheira = parseFloat(dados[10]);
 
-    console.info("%cCódigo do save atual: " + infoCookies 
+    console.info("%cGame carregado! Código do save atual: " + infoCookies 
                 + "|" + infoCps
                 + "|" + infoCpc
                 + "|" + infoAllCookies
@@ -257,6 +258,9 @@ function carregarInfo(){
     itens[0].freq = parseFloat(infoFreqCursor); // freqCursor
 
     itens[1].freq = parseFloat(infoFreqCozinheira); // freqCozinheira
+
+    allCookies = infoAllCookies;
+    qtdCliques = infoQtdCliques;
 
     atualizaprices();
 
