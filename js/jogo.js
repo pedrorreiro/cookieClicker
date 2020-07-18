@@ -65,6 +65,12 @@ function zeraSave() {
 
     atualizaprices();
 
+    allCookies = 0;
+    document.getElementById('totalCookies').innerHTML = allCookies;
+    document.getElementById('qtdCliques').innerHTML = qtdCliques;
+
+    qtdCliques = 0;
+
     zeraInventario();
         
     setCookie("dados", stringSave, 365); // atualiza cookies zerados
@@ -172,6 +178,7 @@ function getStringSave(){
 function autoSave(){
     carregarInfo();
     setInterval(saveGame,5000);
+    
 }
 
 function saveGame(){
