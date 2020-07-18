@@ -172,7 +172,6 @@ function getStringSave(){
 function autoSave(){
     carregarInfo();
     setInterval(saveGame,5000);
-    console.log('executando funct autoSave()');
 }
 
 function saveGame(){
@@ -263,6 +262,8 @@ function carregarInfo(){
     qtdCliques = infoQtdCliques;
 
     atualizaprices();
+
+    atualizaCookies();
 
     document.getElementById('inv' + 0).innerHTML = infoQtdCursor;
     document.getElementById('inv' + 1).innerHTML = infoQtdCozinheira;
