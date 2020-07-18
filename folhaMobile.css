@@ -75,6 +75,10 @@ body{
     margin-bottom: 10%;
 }
 
+#info{
+    display: none;
+}
+
 .nomes{
     font-size: 0.8em;
 }
