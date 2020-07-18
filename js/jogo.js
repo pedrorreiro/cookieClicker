@@ -1,18 +1,3 @@
-window.onresize = function(){
-
-    //console.log(screen.width);
-
-    if(screen.width <= 920){
-        document.getElementById('principal').style.display = "none";
-        document.getElementById('msgMobile').style.display = "block";
-    }
-
-    else{
-        document.getElementById('principal').style.display = "inline-block";
-        document.getElementById('msgMobile').style.display = "none";
-    }
-}
-
 style = "color:blue;font-size:1.1em;font-weight:bold";
 style2 = "color:red; font-weight:bold;font-size:1.4em;";
 styleBold = "font-weight:bold";
@@ -22,6 +7,8 @@ styleBold = "font-weight:bold";
    console.info("");
 
 var cookies = 0;
+var allCookies = 0;
+var qtdCliques = 0;
 var cps = 0;
 var cpc = 1;
 
@@ -165,6 +152,8 @@ function getStringSave(){
     var infoCookies = cookies;
     var infoCps = cps;
     var infoCpc = cpc;
+    var infoAllCookies = allCookies;
+    var infoQtdCliques = qtdCliques;
 
     var qtdCursor = itens[0].qtdCompradas;
     var qtdCozinheira = itens[1].qtdCompradas;
@@ -175,7 +164,7 @@ function getStringSave(){
     var freqCursor = itens[0].freq;
     var freqCozinheira = itens[1].freq;
 
-    return (infoCookies + "|" + infoCps + "|" + infoCpc + "|" +
+    return (infoCookies + "|" + infoCps + "|" + infoCpc + "|" + infoAllCookies + "|" + infoQtdCliques + "|" +
                      qtdCursor + "|" + qtdCozinheira + "|" + lojapriceCursor + "|" +
                      lojapriceCozinheira + "|" + freqCursor + "|" + freqCozinheira);
 }
@@ -208,37 +197,43 @@ function carregarInfo(){
 
     else dados = getStringSave();
 
-    var infoCookies = [];
-    var infoCps = [];
-    var infoCpc = [];
+    var infoCookies;;
+    var infoCps;
+    var infoCpc;
+    var infoAllCookies;
+    var infoQtdCliques;
 
-    var infoQtdCursor = [];
-    var infoQtdCozinheira = [];
+    var infoQtdCursor;
+    var infoQtdCozinheira;
 
-    var infoLojapriceCursor = [];
-    var infoLojapriceCozinheira = [];
+    var infoLojapriceCursor;
+    var infoLojapriceCozinheira;
 
-    var infoFreqCursor = [];
-    var infoFreqCozinheira = [];
+    var infoFreqCursor;
+    var infoFreqCozinheira;
 
     dados = dados.split('|');
 
     infoCookies = parseInt(dados[0]);
     infoCps = parseFloat(dados[1]);
     infoCpc = parseFloat(dados[2]);
+    infoAllCookies = parseInt(dados[3]);
+    infoQtdCliques = parseInt(dados[4]);
 
-    infoQtdCursor = parseInt(dados[3]);
-    infoQtdCozinheira = parseInt(dados[4]);
+    infoQtdCursor = parseInt(dados[5]);
+    infoQtdCozinheira = parseInt(dados[6]);
 
-    infoLojapriceCursor = parseFloat(dados[5]);
-    infoLojapriceCozinheira = parseFloat(dados[6]);
+    infoLojapriceCursor = parseFloat(dados[7]);
+    infoLojapriceCozinheira = parseFloat(dados[8]);
 
-    infoFreqCursor = parseFloat(dados[7]);
-    infoFreqCozinheira = parseFloat(dados[8]);
+    infoFreqCursor = parseFloat(dados[9]);
+    infoFreqCozinheira = parseFloat(dados[10]);
 
     console.info("%cCódigo do save atual: " + infoCookies 
                 + "|" + infoCps
-                + "|" + infoCpc 
+                + "|" + infoCpc
+                + "|" + infoAllCookies
+                + "|" + infoQtdCliques
                 + "|" + infoQtdCursor
                 + "|" + infoQtdCozinheira
                 + "|" + infoLojapriceCursor 
@@ -295,6 +290,11 @@ function atualizaCpc(){
         document.getElementById('cpc').innerHTML = parseFloat(auxCpc/1000000000).toFixed(2);
     }
 
+    else if(cpc >= 1000000000000 && cpc < 1000000000000000){
+        document.getElementById('unidCpc').innerHTML = ' trillion';
+        document.getElementById('cpc').innerHTML = parseFloat(auxCpc/1000000000000).toFixed(2);
+    }
+
     else{
         document.getElementById('unidCpc').innerHTML = '';
         document.getElementById('cpc').innerHTML = cpc.toFixed(2);
@@ -318,17 +318,49 @@ function atualizaCookies(){
         document.getElementById('qtdCookies').innerHTML = parseFloat(auxCookies/1000000000).toFixed(2);
     }
 
+    else if(cookies >= 1000000000000 && cookies < 1000000000000000){
+        document.getElementById('unid').innerHTML = ' trillion';
+        document.getElementById('qtdCookies').innerHTML = parseFloat(auxCookies/1000000000000).toFixed(2);
+    }
+
     else{
         document.getElementById('qtdCookies').innerHTML = cookies;
         document.getElementById('unid').innerHTML = '';
-    } 
+    }
+    
+    document.getElementById('totalCookies').innerHTML = allCookies;
+
+    document.getElementById('qtdCliques').innerHTML = qtdCliques;
 }
 
 function atualizaprices(){
 
+    var auxPrice;
+
     for(var id = 0 ; id < 2 ; id++){
-        document.getElementById(id).innerHTML =  parseFloat(itens[id].price).toFixed(0).toString();
-        
+
+        auxPrice = parseFloat(itens[id].price);
+
+        if(auxPrice >= 1000000 && auxPrice < 1000000000){
+            document.getElementById('unidPrice').innerHTML = ' million';
+            document.getElementById(id).innerHTML =  parseInt(itens[id].price/1000000);
+        }
+
+        else if(auxPrice >= 1000000000 && auxPrice < 1000000000000){
+            document.getElementById('unidPrice').innerHTML = ' billion';
+            document.getElementById(id).innerHTML =  parseInt(itens[id].price/1000000000);
+        }
+
+        else if(auxPrice >= 1000000000000 && auxPrice < 1000000000000000){
+            document.getElementById('unidPrice').innerHTML = ' trillion';
+            document.getElementById(id).innerHTML =  parseInt(itens[id].price/1000000000000);
+        }
+
+        else{
+            document.getElementById(id).innerHTML =  parseInt(itens[id].price);
+            document.getElementById('unid').innerHTML = '';
+        } 
+
     }
 }
 
@@ -339,11 +371,10 @@ function cook(){
     }
 
     cookies++;
+    allCookies++;
 
     setCookies(parseInt(cookies));
-    document.getElementById('qtdCookies').innerHTML = cookies;
 
-    atualizaCookies();
     atualizaCps();
 
     verificaDinheiro();
@@ -354,12 +385,18 @@ function cookClick(){
     if(cookies == 0){
         atualizaprices();
     }
+    
+    allCookies+= parseInt(cpc);
+
+    qtdCliques++;
+
 
     setCookies(parseInt(cookies + cpc));
 
     atualizaCps();
 
     verificaDinheiro();
+
 }
 
 function verificaDinheiro(){ // verifica se pode comprar os itens
@@ -401,7 +438,7 @@ function compra(id){
                 
             // item do click aumenta preço em 20% do preço antigo
 
-            itens[id].price += (itens[id].price * 0.2);
+            itens[id].price += parseInt(itens[id].price * 0.2);
 
             itens[id].freq += itens[id].freq * 0.2 ; // item do cursor aumenta cps em 20% 
                                                     // do cps anterior do item
@@ -445,7 +482,7 @@ function compra(id){
                 
                 // item do click aumenta preço em 15% do preço antigo
                     
-                itens[id].price += (itens[id].price * 0.15);
+                itens[id].price += parseInt(itens[id].price * 0.15);
                     
                 itens[id].freq += itens[id].freq * 0.8 ; // item da cozinheira aumenta cps em 40% 
                                                         // do cps anterior do item
@@ -518,17 +555,6 @@ function getCookie(cname) {
         }
     }
     return "";
-}
-
-function salvaCookieNome() {
-    var nome = getCookie("nome");
-    if (nome != "") {
-    } else {
-        nome = prompt("Não encontramos seu registro, insira o seu nome:", "");
-        if (nome != "" && nome != null) {
-            setCookie("nome", nome, 365);
-        }
-    }
 }
 
 function checkCookie(cname) {

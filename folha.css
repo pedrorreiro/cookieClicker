@@ -87,6 +87,17 @@ body{
     top: 0px;
 }
 
+.separatorMiddle{
+    display: inline-block;
+    position: absolute;
+
+    height: 2%;
+    width: 100%;
+    left: 0px;
+    
+    background-image: url(img/separator.png);
+}
+
 .nomes{
     font-size: 0.8em;
 }
@@ -117,7 +128,7 @@ body{
     font-weight: bold;
 }
 
-#titBloco{
+.titBloco{
     text-align: center;
     font-weight: bold;
 }
@@ -141,19 +152,27 @@ body{
     background-image: url(img/background.png);
 }
 
-#inventario{
+#meio{
     background: white;
-    margin-bottom: 15px;
     padding: 10px;
     text-align: center;
     width: 33%;
     top: 2%;
     left: 31%;
+    height: 84%;
     position: absolute;
     display: inline-block;
     overflow: auto;
 
-   }
+}
+
+#inventario{
+    padding-bottom: 5%;
+}
+
+#info{
+    padding: 10px;
+}
 
 .imgItem{
     width: 80px;

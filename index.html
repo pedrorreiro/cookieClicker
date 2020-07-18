@@ -10,7 +10,25 @@
 
     </head>
 
-    <body onload="autoSave()">
+    <body>
+
+        <script> // resize
+            window.onresize = function(){
+
+            //console.log(screen.width);
+
+            if(screen.width <= 920){
+                document.getElementById('principal').style.display = "none";
+                document.getElementById('msgMobile').style.display = "block";
+            }
+
+            else{
+                document.getElementById('principal').style.display = "inline-block";
+                document.getElementById('msgMobile').style.display = "none";
+            }
+            }
+        
+        </script>
 
         <a id="msgMobile" href="index-mobile.html"><p>CLIQUE AQUI PARA IR A VERSÃO MOBILE</p></a>
 
@@ -40,21 +58,36 @@
 
             <div class="separatorLeft"></div>
 
-            <div id="inventario">
-                <p id="titBloco">Inventário<span id="hideButton" onclick="escondeInv()">  -  (ESCONDER)</span></p>
+            <div id="meio">
 
-                <div id="itensInv">
+                <div id="inventario">
+                    <p class="titBloco">Inventário<span id="hideButton" onclick="escondeInv()">  -  (ESCONDER)</span></p>
 
-                    <span>Cursores: <span id="inv0">0</span></span><br><br>
-                    <span>Cozinheiras: <span id="inv1">0</span></span><br><br>
-
-                    <div id="botoes">
-                        <!-- <button id="save" onclick="saveGame()">SALVAR</button> -->
-                        <button id="reset" onclick="zeraSave()">RESETAR</button>
-                        <!-- <button id="carregar" onclick="carregarInfo()">CARREGAR</button> -->
+                    <div id="itensInv">
+    
+                        <span>Cursores: <span id="inv0">0</span></span><br><br>
+                        <span>Cozinheiras: <span id="inv1">0</span></span><br><br>
+    
+                        <div id="botoes">
+                            <!-- <button id="save" onclick="saveGame()">SALVAR</button> -->
+                            <button id="reset" onclick="zeraSave()">RESETAR</button>
+                            <!-- <button id="carregar" onclick="carregarInfo()">CARREGAR</button> -->
+                        </div>
+    
                     </div>
 
                 </div>
+
+                <div class="separatorMiddle"></div>
+
+                <div id="info">
+                    <p class="titBloco">Informações</p>
+
+                    <span>Total de cookies produzidos: </span><span style="font-weight: bold;" id="totalCookies">0</span><br><br>
+
+                    <span>Total de cliques: </span><span style="font-weight: bold;" id="qtdCliques">0</span><br><br>
+                </div>
+
 
             </div>
 
@@ -62,14 +95,14 @@
 
             <div id=loja>
 
-                <p id="titBloco" style="color: white;font-weight: bold;">Loja</p>
+                <p class="titBloco" style="color: white;font-weight: bold;">Loja</p>
 
                 <div class="itemLoja" onclick="compra(0)">
                     <img src='img/cursor.png' class="imgItem">
                     <div class="dadosItem">
                         <p class="nomeItem">Cursor</p>
                         <p class="descItem">Aumenta  produção de cookie por click.</p>
-                        <span>Preço: </span><span class="precoItem" id="0">0</span>
+                        <span>Preço: </span><span class="precoItem" id="0">0</span><span id="unidPrice"></span>
                     </div>
                 </div>
 
@@ -80,7 +113,7 @@
                     <div class="dadosItem">
                         <p class="nomeItem">Cozinheira</p>
                         <p class="descItem">Aumenta a produção em <br> cookie por segundo e cookie por click.</p>
-                        <span>Preço: </span><span class="precoItem" id="1">0</span>
+                        <span>Preço: </span><span class="precoItem" id="1">0</span><span id="unidCpc"></span>
                     </div><br><br>
                     <p id="avisoBug">A cozinheira está com bug.<br>Então limitamos o máximo para 20</p>
                 </div>

@@ -11,6 +11,22 @@
     </head>
 
     <body onload="autoSave()">
+
+        <script>
+            window.onload = function(){
+
+            //console.log(screen.width);
+
+            alturaCel = screen.height;
+
+            document.getElementById('cookieBar').style.height = alturaCel/2 + 'px';
+
+            //document.getElementById('cookie').style.width = alturaCel/4 + 'px';
+
+            }
+
+        </script>
+
         <div id="principal">
 
             <a id="msgMobile" href="index.html"><p>CLIQUE AQUI PARA IR A VERSÃO DESKTOP</p></a>
@@ -31,14 +47,14 @@
                 </div>
 
                 <img id="cookie" src="img/cookie.png" onclick="cookClick()"></img><br>
-                <script src="js/jogoMobile.js"></script>
+                <script src="js/jogo.js"></script>
              
 
             </div>
 
             <div class="separatorLeft"></div>
 
-            <div id="inventario">
+            <div id="meio">
                 <p id="titBloco">Inventário<span id="hideButton" onclick="escondeInv()">  -  (ESCONDER)</span></p>
 
                 <div id="itensInv">
@@ -67,7 +83,7 @@
                     <div class="dadosItem">
                         <p class="nomeItem">Cursor</p>
                         <p class="descItem">Aumenta  produção de cookie por click.</p>
-                        <span>Preço: </span><span class="precoItem" id="0">0</span>
+                        <span>Preço: </span><span class="precoItem" id="0">0</span><span id="unidPrice"></span>
                     </div>
                 </div>
 
@@ -78,7 +94,7 @@
                     <div class="dadosItem">
                         <p class="nomeItem">Cozinheira</p>
                         <p class="descItem">Aumenta a produção em <br> cookie por segundo e cookie por click.</p>
-                        <span>Preço: </span><span class="precoItem" id="1">0</span>
+                        <span>Preço: </span><span class="precoItem" id="1">0</span><span id="unidCpc"></span>
                     </div><br><br>
                     <p id="avisoBug">A cozinheira está com bug.<br>Então limitamos o máximo para 20</p>
                 </div>
