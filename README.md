@@ -1,1 +1,3 @@
-Falta balancear o CPS e CPC dos itens da loja.
+Link de um jogo totalmente baseado no já existente Cookie Clicker.
+
+Código feito por mim. Foi usado somente javascript.
